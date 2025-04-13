@@ -1,5 +1,5 @@
 <?php
-$koneksi = mysqli_connect("localhost", "root", "", "todo");
+$koneksi = new mysqli("localhost", "root", "", "todo");
 
 session_start();
 
