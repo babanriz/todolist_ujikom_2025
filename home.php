@@ -47,6 +47,8 @@ if (isset($_GET['edit'])) {
     </div>
     </nav>
 
+    
+
     <!-- Pesan Selamat Datang di luar navbar -->
     <div class="container mt-4">
         <div class="row">
@@ -59,6 +61,15 @@ if (isset($_GET['edit'])) {
     <div class="container mt-5">
         <h2 class="text-center mb-4">Dashboard</h2>
 
+        <!-- Notifikasi -->
+        <?php if (isset($_SESSION['message'])): ?>
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                <?= $_SESSION['message'] ?>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            <?php unset($_SESSION['message']); // Hapus pesan setelah ditampilkan ?>
+        <?php endif; ?>
+        
         <!-- Form tambah/edit tugas -->
         <div class="card mb-4">
             <div class="card-body">

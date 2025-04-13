@@ -1,5 +1,5 @@
 <?php
-$koneksi = new mysqli("localhost", "root", "", "todo");
+$koneksi = new mysqli("sql306.infinityfree.com", "if0_38595752", "o5Gmy7ivGxkEDG", "if0_38595752_todo");
 
 session_start();
 
@@ -34,6 +34,10 @@ if (isset($_POST['tabah_tugas'])) {
     $uid = $_SESSION['user_id'];
     mysqli_query($koneksi, "INSERT INTO tasks (task, priority, due_date, user_id) VALUES ('$task','$priority','$due','$uid')");
     header("Location: home.php");
+
+    $_SESSION['message'] = "Tugas berhasil ditambahkan!";
+    header("Location: home.php");
+    exit;
 }
 
 // Update Tugas
@@ -44,6 +48,10 @@ if (isset($_POST['update_task'])) {
     $due = $_POST['due_date'];
     mysqli_query($koneksi, "UPDATE tasks SET task='$task', priority='$priority', due_date='$due' WHERE id=$id");
     header("Location: home.php");
+
+    $_SESSION['message'] = "Tugas berhasil diperbarui!";
+    header("Location: home.php");
+    exit;
 }
 
 // Tandai Selesai
@@ -51,6 +59,10 @@ if (isset($_GET['complete'])) {
     $id = $_GET['complete'];
     mysqli_query($koneksi, "UPDATE tasks SET status=1 WHERE id=$id");
     header("Location: home.php");
+
+    $_SESSION['message'] = "Tugas berhasil ditandai sebagai selesai!";
+    header("Location: home.php");
+    exit;
 }
 
 // Hapus
@@ -58,6 +70,10 @@ if (isset($_GET['delete'])) {
     $id = $_GET['delete'];
     mysqli_query($koneksi, "DELETE FROM tasks WHERE id=$id");
     header("Location: home.php");
+
+    $_SESSION['message'] = "Tugas berhasil dihapus!";
+    header("Location: home.php");
+    exit;
 }
 
 // Ambil Tugas Per User
